@@ -1,0 +1,53 @@
+<div class="container center p-1">
+  <mat-card class="full-width">
+    <mat-card-content>
+      <form #userForm="ngForm" (ngSubmit)="updateUser(userForm)" novalidate>
+        <div class="row p-1">
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Name</mat-label>
+            <input matInput [(ngModel)]="user.name" name="name" #nameInput="ngModel" required>
+            <mat-error *ngIf="nameInput.invalid && nameInput.touched">
+              Name is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="row p-1">
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Email ID</mat-label>
+            <input matInput [(ngModel)]="user.email" name="email">
+          </mat-form-field>
+        </div>
+        <div class="row p-1">
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Phone No.</mat-label>
+            <input matInput [(ngModel)]="user.phoneNo" name="phoneNo" #phoneNoInput="ngModel" required>
+            <mat-error *ngIf="phoneNoInput.invalid && phoneNoInput.touched">
+              Phone no. is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="row p-1">
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Date of Birth</mat-label>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="user.dateOfBirth" name="dateOfBirth" #dobInput="ngModel" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="dobInput.invalid && dobInput.touched">
+              Date of Birth is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="row p-1">
+          <label class="p-1">Gender:</label>
+          <mat-radio-group [(ngModel)]="user.gender" name="gender" required>
+            <mat-radio-button class="p-1" value="Male">Male</mat-radio-button>
+            <mat-radio-button class="p-1" value="Female">Female</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div class="row p-1">
+          <button mat-raised-button color="primary" type="submit" [disabled]="userForm.invalid">Update</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
